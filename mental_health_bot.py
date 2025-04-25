@@ -5,7 +5,7 @@ import datetime
 import os
 
 # Load BlenderBot model
-MODEL_NAME = "facebook/blenderbot-3B"
+MODEL_NAME = "facebook/blenderbot-400M-distill"
 
 tokenizer = BlenderbotTokenizer.from_pretrained(MODEL_NAME)
 model = BlenderbotForConditionalGeneration.from_pretrained(MODEL_NAME)
