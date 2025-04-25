@@ -4,9 +4,6 @@ import random
 import datetime
 import os
 
-# Optional voice input
-import speech_recognition as sr
-
 # Load BlenderBot model
 MODEL_NAME = "facebook/blenderbot-3B"
 
@@ -42,22 +39,7 @@ if mood:
 st.subheader("🌞 Daily Affirmation")
 st.info(random.choice(affirmations))
 
-# Voice input (using PocketSphinx)
-use_voice = st.checkbox("🎙️ Use Microphone")
-if use_voice:
-    recognizer = sr.Recognizer()
-    with sr.Microphone() as source:
-        st.write("Listening... Speak now.")
-        try:
-            audio = recognizer.listen(source, timeout=5)
-            # Use PocketSphinx for recognition (offline)
-            user_input = recognizer.recognize_sphinx(audio)
-            st.success(f"You said: {user_input}")
-        except Exception as e:
-            user_input = ""
-            st.error("Sorry, I couldn't understand.")
-else:
-    user_input = st.text_input("You:", placeholder="Type how you're feeling...")
+user_input = st.text_input("You:", placeholder="Type how you're feeling...")
 
 # Session state
 if "chat" not in st.session_state:
